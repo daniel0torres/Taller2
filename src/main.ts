@@ -21,14 +21,12 @@ for (const serie of series) {
     const dataCell2 = document.createElement("td");
     const dataCell3 = document.createElement("td");
     const dataCell4 = document.createElement("td");
-   
 
     dataCell1.textContent = "" + serie.numero;
     dataCell2.textContent = serie.nombre;
     dataCell2.style.color = "blue";
     dataCell3.textContent = serie.channel;
     dataCell4.textContent = "" + serie.seasons;
-   
 
     dataRow1.appendChild(dataCell1);
     dataRow1.appendChild(dataCell2);
@@ -36,43 +34,74 @@ for (const serie of series) {
     dataRow1.appendChild(dataCell4);
 
     // Agrega un evento onclick a la celda "Name" (dataCell2)
-        dataCell2.onclick = function() {
-        // Crea la tabla Bootstrap que utiliza el componente card
-        const cardTable = document.createElement("table");
-        cardTable.className = "table table-bordered";
-
-        const cardTableRow = document.createElement("tr");
-        const cardTableCell = document.createElement("td");
-
+    dataCell2.onclick = function() {
+        // Crea el componente card de Bootstrap con dos filas
         const card = document.createElement("div");
         card.className = "card";
         card.style.width = "18rem";
 
+        // Primera fila con una imagen
+        const imageRow = document.createElement("div");
+        imageRow.className = "row";
+
+        const imageCell = document.createElement("div");
+        imageCell.className = "col";
+
+        const image = document.createElement("img");
+        image.src = "URL_DE_LA_IMAGEN"; // Reemplaza con la URL de tu imagen
+        image.className = "card-img-top";
+        image.alt = "Imagen de la serie";
+
+        imageCell.appendChild(image);
+        imageRow.appendChild(imageCell);
+
+        // Segunda fila con el nombre y la descripción
+        const textRow = document.createElement("div");
+        textRow.className = "row";
+
+        const textCell = document.createElement("div");
+        textCell.className = "col";
+
         const cardBody = document.createElement("div");
         cardBody.className = "card-body";
+
         cardBody.innerHTML = `
             <h5 class="card-title">${serie.nombre}</h5>
-            <p class="card-text">${serie.channel}</p>
+            <p class="card-text">${serie.description}</p>
         `;
 
-        card.appendChild(cardBody);
-        cardTableCell.appendChild(card);
-        cardTableRow.appendChild(cardTableCell);
-        cardTable.appendChild(cardTableRow);
+        // Agrega un enlace al sitio web de la serie con el nombre de la serie como texto
+        const enlaceSitioWeb = document.createElement("a");
+        enlaceSitioWeb.href = serie.website;
+        enlaceSitioWeb.textContent =  serie.website;
 
-        // Limpia el contenedor de resultado antes de mostrar la nueva tabla
+        cardBody.appendChild(enlaceSitioWeb);
+
+        textCell.appendChild(cardBody);
+        textRow.appendChild(textCell);
+
+        // Agrega las filas al card
+        card.appendChild(imageRow);
+        card.appendChild(textRow);
+
+        // Limpia el contenedor de resultado antes de mostrar el nuevo card
         const resultado = document.getElementById("resultado");
         resultado.innerHTML = "";
 
-        // Agrega la nueva tabla al contenedor de resultado
-        resultado.appendChild(cardTable);
+        // Agrega el nuevo card al contenedor de resultado
+        resultado.appendChild(card);
     };
 
     tbody.appendChild(dataRow1);
     contador++;
 }
 
-// Crea el párrafo con el contenido "Hola"
+
+
+
+
+
+
 const paragraphElement = document.createElement("p");
 paragraphElement.textContent = "Seasons average:" + contador ;
 

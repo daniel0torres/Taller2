@@ -62,26 +62,40 @@ define("main", ["require", "exports", "data"], function (require, exports, data_
         dataRow1.appendChild(dataCell3);
         dataRow1.appendChild(dataCell4);
         dataCell2.onclick = function () {
-            const cardTable = document.createElement("table");
-            cardTable.className = "table table-bordered";
-            const cardTableRow = document.createElement("tr");
-            const cardTableCell = document.createElement("td");
             const card = document.createElement("div");
             card.className = "card";
             card.style.width = "18rem";
+            const imageRow = document.createElement("div");
+            imageRow.className = "row";
+            const imageCell = document.createElement("div");
+            imageCell.className = "col";
+            const image = document.createElement("img");
+            image.src = "URL_DE_LA_IMAGEN";
+            image.className = "card-img-top";
+            image.alt = "Imagen de la serie";
+            imageCell.appendChild(image);
+            imageRow.appendChild(imageCell);
+            const textRow = document.createElement("div");
+            textRow.className = "row";
+            const textCell = document.createElement("div");
+            textCell.className = "col";
             const cardBody = document.createElement("div");
             cardBody.className = "card-body";
             cardBody.innerHTML = `
             <h5 class="card-title">${serie.nombre}</h5>
-            <p class="card-text">${serie.channel}</p>
+            <p class="card-text">${serie.description}</p>
         `;
-            card.appendChild(cardBody);
-            cardTableCell.appendChild(card);
-            cardTableRow.appendChild(cardTableCell);
-            cardTable.appendChild(cardTableRow);
+            const enlaceSitioWeb = document.createElement("a");
+            enlaceSitioWeb.href = serie.website;
+            enlaceSitioWeb.textContent = serie.website;
+            cardBody.appendChild(enlaceSitioWeb);
+            textCell.appendChild(cardBody);
+            textRow.appendChild(textCell);
+            card.appendChild(imageRow);
+            card.appendChild(textRow);
             const resultado = document.getElementById("resultado");
             resultado.innerHTML = "";
-            resultado.appendChild(cardTable);
+            resultado.appendChild(card);
         };
         tbody.appendChild(dataRow1);
         contador++;
