@@ -41,10 +41,8 @@ define("data", ["require", "exports", "Serie"], function (require, exports, Seri
 define("main", ["require", "exports", "data"], function (require, exports, data_1) {
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
-    console.log("Hola Daniel 13");
-    console.log("Hola Daniel");
-    console.log("Hola Daniel");
     const tbody = document.getElementById("daniel");
+    const resultado = document.getElementById("resultado");
     let contador = 0;
     for (const serie of data_1.series) {
         const dataRow1 = document.createElement("tr");
@@ -61,7 +59,8 @@ define("main", ["require", "exports", "data"], function (require, exports, data_
         dataRow1.appendChild(dataCell2);
         dataRow1.appendChild(dataCell3);
         dataRow1.appendChild(dataCell4);
-        dataCell2.onclick = function () {
+        dataCell2.onclick = () => {
+            resultado.innerHTML = "";
             const card = document.createElement("div");
             card.className = "card";
             card.style.width = "18rem";
@@ -70,7 +69,7 @@ define("main", ["require", "exports", "data"], function (require, exports, data_
             const imageCell = document.createElement("div");
             imageCell.className = "col";
             const image = document.createElement("img");
-            image.src = "URL_DE_LA_IMAGEN";
+            image.src = serie.image;
             image.className = "card-img-top";
             image.alt = "Imagen de la serie";
             imageCell.appendChild(image);
@@ -93,15 +92,9 @@ define("main", ["require", "exports", "data"], function (require, exports, data_
             textRow.appendChild(textCell);
             card.appendChild(imageRow);
             card.appendChild(textRow);
-            const resultado = document.getElementById("resultado");
-            resultado.innerHTML = "";
             resultado.appendChild(card);
         };
         tbody.appendChild(dataRow1);
         contador++;
     }
-    const paragraphElement = document.createElement("p");
-    paragraphElement.textContent = "Seasons average:" + contador;
-    const container = document.body;
-    container.appendChild(paragraphElement);
 });

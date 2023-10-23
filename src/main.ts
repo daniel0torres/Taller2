@@ -1,20 +1,12 @@
-
+// Importa la variable 'series' desde un archivo 'data'
 import { series } from "./data";
-console.log("Hola Daniel 13");
-console.log("Hola Daniel");
-console.log("Hola Daniel");
-
 
 // Obtén una referencia al elemento <div> con el id "daniel"
-
-
-const tbody = document.getElementById("daniel");
-
-
-
-
+const tbody = document.getElementById("daniel") as HTMLTableSectionElement;
+const resultado = document.getElementById("resultado") as HTMLDivElement;
 
 let contador = 0;
+
 for (const serie of series) {
     const dataRow1 = document.createElement("tr");
     const dataCell1 = document.createElement("td");
@@ -34,7 +26,10 @@ for (const serie of series) {
     dataRow1.appendChild(dataCell4);
 
     // Agrega un evento onclick a la celda "Name" (dataCell2)
-    dataCell2.onclick = function() {
+    dataCell2.onclick = () => {
+        // Limpia cualquier contenido previo en el contenedor "resultado"
+        resultado.innerHTML = "";
+
         // Crea el componente card de Bootstrap con dos filas
         const card = document.createElement("div");
         card.className = "card";
@@ -48,7 +43,7 @@ for (const serie of series) {
         imageCell.className = "col";
 
         const image = document.createElement("img");
-        image.src = "URL_DE_LA_IMAGEN"; // Reemplaza con la URL de tu imagen
+        image.src = serie.image; // Reemplaza con la URL de tu imagen
         image.className = "card-img-top";
         image.alt = "Imagen de la serie";
 
@@ -73,7 +68,7 @@ for (const serie of series) {
         // Agrega un enlace al sitio web de la serie con el nombre de la serie como texto
         const enlaceSitioWeb = document.createElement("a");
         enlaceSitioWeb.href = serie.website;
-        enlaceSitioWeb.textContent =  serie.website;
+        enlaceSitioWeb.textContent = serie.website;
 
         cardBody.appendChild(enlaceSitioWeb);
 
@@ -84,11 +79,7 @@ for (const serie of series) {
         card.appendChild(imageRow);
         card.appendChild(textRow);
 
-        // Limpia el contenedor de resultado antes de mostrar el nuevo card
-        const resultado = document.getElementById("resultado");
-        resultado.innerHTML = "";
-
-        // Agrega el nuevo card al contenedor de resultado
+        // Agrega el nuevo card al contenedor "resultado"
         resultado.appendChild(card);
     };
 
@@ -96,17 +87,4 @@ for (const serie of series) {
     contador++;
 }
 
-
-
-
-
-
-
-const paragraphElement = document.createElement("p");
-paragraphElement.textContent = "Seasons average:" + contador ;
-
-// Encuentra el contenedor donde deseas agregar el párrafo (por ejemplo, el body del documento)
-const container = document.body; // Puedes ajustar esto a tu necesidad
-
-// Agrega el párrafo al contenedor
-container.appendChild(paragraphElement);
+// Crea un párrafo y muestra
