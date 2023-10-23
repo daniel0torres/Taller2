@@ -88,3 +88,11 @@ for (const serie of series) {
 }
 
 // Crea un párrafo y muestra
+const paragraphElement = document.createElement("p");
+paragraphElement.textContent = `Seasons average: ${contador}`;
+
+// Encuentra el contenedor donde deseas agregar el párrafo (por ejemplo, el body del documento)
+const container = document.body; // Puedes ajustar esto a tus necesidades
+
+// Agrega el párrafo al contenedor
+container.appendChild(paragraphElement);

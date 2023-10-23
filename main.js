@@ -97,4 +97,8 @@ define("main", ["require", "exports", "data"], function (require, exports, data_
         tbody.appendChild(dataRow1);
         contador++;
     }
+    const paragraphElement = document.createElement("p");
+    paragraphElement.textContent = `Seasons average: ${contador}`;
+    const container = document.body;
+    container.appendChild(paragraphElement);
 });
