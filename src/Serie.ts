@@ -1,5 +1,3 @@
-
-
 export class Serie {
     public  numero: number;
     public  nombre: string;

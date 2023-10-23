@@ -45,6 +45,7 @@ define("main", ["require", "exports", "data"], function (require, exports, data_
     console.log("Hola Daniel");
     console.log("Hola Daniel");
     const tbody = document.getElementById("daniel");
+    let contador = 0;
     for (const serie of data_1.series) {
         const dataRow1 = document.createElement("tr");
         const dataCell1 = document.createElement("td");
@@ -53,12 +54,40 @@ define("main", ["require", "exports", "data"], function (require, exports, data_
         const dataCell4 = document.createElement("td");
         dataCell1.textContent = "" + serie.numero;
         dataCell2.textContent = serie.nombre;
+        dataCell2.style.color = "blue";
         dataCell3.textContent = serie.channel;
         dataCell4.textContent = "" + serie.seasons;
         dataRow1.appendChild(dataCell1);
         dataRow1.appendChild(dataCell2);
         dataRow1.appendChild(dataCell3);
         dataRow1.appendChild(dataCell4);
+        dataCell2.onclick = function () {
+            const cardTable = document.createElement("table");
+            cardTable.className = "table table-bordered";
+            const cardTableRow = document.createElement("tr");
+            const cardTableCell = document.createElement("td");
+            const card = document.createElement("div");
+            card.className = "card";
+            card.style.width = "18rem";
+            const cardBody = document.createElement("div");
+            cardBody.className = "card-body";
+            cardBody.innerHTML = `
+            <h5 class="card-title">${serie.nombre}</h5>
+            <p class="card-text">${serie.channel}</p>
+        `;
+            card.appendChild(cardBody);
+            cardTableCell.appendChild(card);
+            cardTableRow.appendChild(cardTableCell);
+            cardTable.appendChild(cardTableRow);
+            const resultado = document.getElementById("resultado");
+            resultado.innerHTML = "";
+            resultado.appendChild(cardTable);
+        };
         tbody.appendChild(dataRow1);
+        contador++;
     }
+    const paragraphElement = document.createElement("p");
+    paragraphElement.textContent = "Seasons average:" + contador;
+    const container = document.body;
+    container.appendChild(paragraphElement);
 });
