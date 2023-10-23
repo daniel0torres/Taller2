@@ -1,0 +1,10 @@
+{
+    "compilerOptions": {
+      "target": "ESNext",     // El nivel de JavaScript al que deseas compilar
+      "outFile": "main.js",   // Nombre del archivo de salida
+      "rootDir": "./src",     // Directorio fuente de tus archivos .ts
+      "removeComments": true , // Opcional: Elimina los comentarios en el archivo de salida
+      "module": "AMD"
+    },
+    "include": ["src/**/*.ts"] // Patrón para incluir todos los archivos .ts en la carpeta src
+  }
